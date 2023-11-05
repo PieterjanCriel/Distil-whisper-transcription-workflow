@@ -1,0 +1,54 @@
+{
+  "Settings": {
+    "OutputGroups": [
+      {
+        "Name": "File Group",
+        "OutputGroupSettings": {
+          "Type": "FILE_GROUP_SETTINGS",
+          "FileGroupSettings": {
+            "Destination": "s3://<BUCKET_AND_PATH>"
+          }
+        },
+        "Outputs": [
+          {
+            "AudioDescriptions": [
+              {
+                "CodecSettings": {
+                  "Codec": "AAC",
+                  "AacSettings": {
+                    "Bitrate": 96000,
+                    "CodingMode": "CODING_MODE_2_0",
+                    "SampleRate": 48000
+                  }
+                },
+                "AudioSourceName": "Audio Selector 1"
+              }
+            ],
+            "ContainerSettings": {
+              "Container": "MP4",
+              "Mp4Settings": {}
+            }
+          }
+        ]
+      }
+    ],
+    "TimecodeConfig": {
+      "Source": "ZEROBASED"
+    },
+    "Inputs": [
+      {
+        "TimecodeSource": "ZEROBASED",
+        "VideoSelector": {},
+        "AudioSelectors": {
+          "Audio Selector 1": {
+            "DefaultSelection": "DEFAULT"
+          }
+        }
+      }
+    ]
+  },
+  "Name": "extract-audio",
+  "Category": "processing",
+  "Description": "extracting audio for transcription",
+  "Queue": "arn:aws:mediaconvert:eu-central-1:<ACCOUNT_ID>:queues/Default"
+}
